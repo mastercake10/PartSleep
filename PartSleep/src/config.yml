@@ -1,0 +1,5 @@
+SleeperPerc: 0.5
+AlertEnabled: true
+OnSleepText: "&e%s is now sleeping."
+OnWakeText: "&e%s has left their bed."
+OnMorningText: "&eWakey, wakey, rise and shine... Good Morning everyone!"

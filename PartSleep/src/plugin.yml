@@ -1,0 +1,5 @@
+name: PartSleep
+author: MasterCake
+main: de.MasterCake.PartSleep.Main
+version: 0.1
+description: Rises the sun as soon as a customized amount of players fell asleep!
