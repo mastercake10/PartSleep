@@ -1,14 +1,11 @@
-package de.MasterCake.PartSleep;
+package xyz.spaceio.partsleep;
 
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent.BedEnterResult;
-
-import net.minecraft.server.v1_15_R1.EntityHuman;
 
 import org.bukkit.event.player.PlayerBedLeaveEvent;
 

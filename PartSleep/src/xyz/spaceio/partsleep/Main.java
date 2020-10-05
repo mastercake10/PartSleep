@@ -1,4 +1,4 @@
-package de.MasterCake.PartSleep;
+package xyz.spaceio.partsleep;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;

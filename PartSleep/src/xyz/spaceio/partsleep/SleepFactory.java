@@ -1,10 +1,9 @@
-package de.MasterCake.PartSleep;
+package xyz.spaceio.partsleep;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
