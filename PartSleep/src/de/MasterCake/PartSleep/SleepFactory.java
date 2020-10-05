@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import net.minecraft.server.v1_16_R2.EntityHuman;
 
 public class SleepFactory {
 	
@@ -63,15 +67,22 @@ public class SleepFactory {
 	public void checkForEnoughPlayers(World w){
 		if(getSleepingPlayers(w) >= w.getPlayers().size() * sleeperPerc){
 			sleeping.remove(w.getName());
-	        w.setTime(1000L);
-	        if(w.hasStorm()){
-	          w.setStorm(false);
-	        }else if(w.isThundering()){
-	          w.setThundering(false);
-	        }
+			
+			skipToNextDay(w);
+			
 	        if(alertEnabled){
 	        	alertOnMorning(w);
 	        }
+		}
+	}
+	
+	private void skipToNextDay(World w) {
+        
+		for(Player player : w.getPlayers()) {
+			EntityHuman entityHuman = ((CraftPlayer) player).getHandle();
+			entityHuman.fauxSleeping = true;
+			player.setSleepingIgnored(true);
+			
 		}
 	}
 	
