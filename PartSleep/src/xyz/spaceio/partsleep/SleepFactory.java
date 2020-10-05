@@ -1,15 +1,16 @@
 package xyz.spaceio.partsleep;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_16_R2.EntityHuman;
 
 public class SleepFactory {
 	
@@ -78,8 +79,24 @@ public class SleepFactory {
 	private void skipToNextDay(World w) {
         
 		for(Player player : w.getPlayers()) {
-			EntityHuman entityHuman = ((CraftPlayer) player).getHandle();
-			entityHuman.fauxSleeping = true;
+			try {
+				String packageName = Bukkit.getServer().getClass().getPackage().getName();
+				String versionString = packageName.substring(packageName.lastIndexOf('.') + 1);
+
+				Object craftPlayer = Class.forName("org.bukkit.craftbukkit." + versionString + ".entity.CraftPlayer").cast(player);
+				Object entityHuman = craftPlayer.getClass().getMethod("getHandle").invoke(craftPlayer);
+				entityHuman.getClass().getField("fauxSleeping").set(entityHuman, true);
+						
+//				EntityHuman entityHuman = ((CraftPlayer) player).getHandle();
+//				entityHuman.fauxSleeping = true;
+				
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+					| NoSuchMethodException | SecurityException | ClassNotFoundException | NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 			player.setSleepingIgnored(true);
 			
 		}
